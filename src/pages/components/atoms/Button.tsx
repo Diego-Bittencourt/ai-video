@@ -14,7 +14,7 @@ const Button: FC<IButton> = ({
 }) => {
 
     return (
-        <button onClick={onClick}>{ children }</button>
+        <button onClick={onClick} className="border-gray-700 bg-emerald-500 border-2 rounded-md hover:shadow-lg selection:scale-50 p-4 text-white text-2xl min-w-[100px]">{ children }</button>
     )
 }
 
