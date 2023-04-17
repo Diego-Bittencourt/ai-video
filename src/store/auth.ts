@@ -1,27 +1,27 @@
-import { createContext, useContext, useState } from 'react'
+'use client'
 
-const Context = createContext()
+import { createContext, useContext, useState, Dispatch, SetStateAction } from 'react'
 
-export function AuthProvider({ children }) {
-    const [authCredentials, setAuthCredentials] = useState({
-        loginEmail: '',
-        loginPassword: '',
-
-    })
-
-    const [authTokens, setAuthTokens] = useState({
-        token: '',
-        accessToken: '',
-        refreshToken: ''
-    })
-
-    const [isLoading, setIsLoading] = useState('false')
-
-    return (
-        <Context.Provider value={[authCredentials, setAuthCredentials, authTokens, setAuthTokens, isLoading, setIsLoading]} >{children}</Context.Provider>
-    )
+type ContextProps = {
+    loginEmail: string,
+    loginPassword: string,
+    token: string,
+    accessToken: string,
+    refreshToken: string,
+    isLoading: boolean,
+    setAuthData: Dispatch<SetStateAction<any>>,
+    setIsLoading: Dispatch<SetStateAction<void>>
 }
 
-export function useAuthContext() {
-    return useContext(Context)
-}
+
+const GlobalContext = createContext<ContextProps>({
+    loginEmail: '',
+    loginPassword: '',
+    token: '',
+    accessToken: '',
+    refreshToken: '',
+    isLoading: false,
+    setAuthData: ():any => {},
+    setIsLoading: ():void => {}
+
+})

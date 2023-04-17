@@ -29,6 +29,7 @@ const EditVideo = () => {
   ]);
 
   return (
+    <>
     <div className="p-4 flex flex-wrap justify-center w-full mb-40">
       {dummyData.map((slide) => {
         return (
@@ -52,8 +53,9 @@ const EditVideo = () => {
         );
       })}
 
-      <Button>Update</Button>
+      <Button classesName={'w-2/3'}>Update</Button>
     </div>
+      </>
   );
 };
 
