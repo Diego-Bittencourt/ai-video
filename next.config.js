@@ -8,6 +8,12 @@ const nextConfig = {
         hostname: 'placehold.jp',
         port: '',
         pathname: '/*'
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/*'
       }
     ]
   }
