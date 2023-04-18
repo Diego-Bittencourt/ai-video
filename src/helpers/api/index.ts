@@ -1,7 +1,8 @@
-export const api = {
+ const api = {
   post: async (url: string, payload: Object) => {
-    const baseUrl = process.env.BASE_URL;
-    const token = process.env.API_TOKEN;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const token = process.env.NEXT_PUBLIC_API_TOKEN;
+    console.log(baseUrl)
     const options = {
       method: "POST",
       headers: {
@@ -18,8 +19,8 @@ export const api = {
     return response;
   },
   get: async (url: string) => {
-    const baseUrl = process.env.BASE_URL;
-    const token = process.env.API_TOKEN;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const token = process.env.NEXT_PUBLIC_API_TOKEN;
     const options = {
       method: "POST",
       headers: {
@@ -34,3 +35,5 @@ export const api = {
     return response;
   },
 };
+
+export default api

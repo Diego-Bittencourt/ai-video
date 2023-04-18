@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
    router.push('/create-video')
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
