@@ -1,0 +1,36 @@
+export const api = {
+  post: async (url: string, payload: Object) => {
+    const baseUrl = process.env.BASE_URL;
+    const token = process.env.API_TOKEN;
+    const options = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    }; //end of options object
+
+    //fetching the data
+    const data = await fetch(baseUrl + url, options);
+    const response = await data.json();
+    return response;
+  },
+  get: async (url: string) => {
+    const baseUrl = process.env.BASE_URL;
+    const token = process.env.API_TOKEN;
+    const options = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }; //end of options object
+
+    const data = await fetch(baseUrl + url);
+    const response = await data.json();
+    return response;
+  },
+};
