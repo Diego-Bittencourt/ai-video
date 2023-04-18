@@ -11,7 +11,13 @@ const CreateVideo = () => {
   //templateId is being hardcoded
   const [templateId, setTemplateId] = useState('641bc0e8e06dcf0aef67bf36')
 
-  const submitHandler = (e: React.FormEvent) => {
+  //storing the url video in a state for a while
+  const [urlVideo, setUrlVideo] = useState(null)
+
+  //control the video status
+  const [isUrlVideoReady, setIsUrlVideoReady] = useState(false)
+
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log("from code", process.env.NEXT_PUBLIC_BASE_URL)
     //prepare the payload to the fetch
@@ -20,7 +26,19 @@ const CreateVideo = () => {
       waitForVideo: true,
       templateId: templateId
     }
-    api.post('generate/url', payload)
+
+    try {
+    //fetch to create the video and return the video info
+    const video = await api.post('generate/url', payload)
+    setUrlVideo(video)
+    setIsUrlVideoReady(true)
+    } catch (err) {
+      console.error(err)
+    }
+
+    
+
+
     //reset the input
     setUrlInput('')
   }
@@ -50,11 +68,11 @@ const CreateVideo = () => {
       </div>
     </form>
     <UrlVideo 
-      isUrlVideoReady={true} 
-      videoTitle={'Test'}
-      videoThumbnail={undefined}
-      videoStatus={'draft'}
-      videoId="111"
+      isUrlVideoReady={isUrlVideoReady} 
+      videoTitle={(urlVideo as any)?.name}
+      videoThumbnail={(urlVideo as any)?.thumbnail}
+      videoStatus={(urlVideo as any)?.status}
+      videoId={(urlVideo as any)?.id}
       />
     </>
   );

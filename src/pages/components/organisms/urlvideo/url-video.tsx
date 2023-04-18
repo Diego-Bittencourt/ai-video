@@ -21,16 +21,17 @@ const urlVideo: FC<VideoProps> = ({
 
     //code to show if the url video has been created and fetched
     const urlVideoReady = (
-        (<div>
-            <h3>{videoTitle}</h3>
+        (<div className='space-y-4'>
+            <h3 className='text-center text-2xl'>{videoTitle}</h3>
             <Image 
                 src={videoThumbnail ? videoThumbnail : 'https://placehold.jp/200x108.png?text=Data'} 
                 alt="Something"
                 width={300}
                 height={150}
+                className='m-auto'
                 />
-            <p>{videoStatus}</p>
-            <div className="flex justify-around w-2/3">
+            <p className='text-center text-2xl'>{videoStatus}</p>
+            <div className="flex justify-around w-2/3 mx-auto">
                 {videoStatus === 'draft' && <Button>Render</Button>} 
                 <Button>Check Video</Button>
                 {videoStatus === 'ready' && <Button>Download</Button>}

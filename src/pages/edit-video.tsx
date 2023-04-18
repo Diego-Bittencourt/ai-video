@@ -45,8 +45,7 @@ const EditVideo = () => {
               height={150}
             />
             <textarea
-              type="text"
-              rows="8"
+              rows={8}
               className="border h-auto p-4 w-full rounded-md"
             ></textarea>
           </div>
