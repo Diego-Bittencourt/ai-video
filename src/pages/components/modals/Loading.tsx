@@ -2,12 +2,15 @@
 import { FC, ReactNode } from "react"
 import styles from './Loading.module.css'
 
+import Portal from '../atoms/Portal'
+
 
 
 const Loading = () => {
 
 
     return (
+        <Portal selector="#message">
         <div className="w-screen h-screen fixed z-10">
         <div id="loading-backdrop" className="bg-gray-800 opacity-60 w-full h-full fixed z-10"></div>
         <h2 className="text-white text-xl lg:text-4xl z-30 top-2/3 w-full text-center">ローディング</h2>
@@ -24,6 +27,7 @@ const Loading = () => {
         </div>
         
     </div>
+    </Portal>
     )
 }
 
