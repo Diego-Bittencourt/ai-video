@@ -4,8 +4,10 @@ import type { AppProps } from "next/app";
 import Layout from "./components/Layout";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { store } from "../store/store";
+import type { RootState } from "../store/store";
+import { useSelector } from "react-redux"
 import { Providers } from "../store/provider";
+
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -16,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   return (
     <Providers>

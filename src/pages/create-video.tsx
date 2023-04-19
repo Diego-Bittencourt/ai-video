@@ -10,6 +10,10 @@ import {
   setTokens,
 } from "../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { createPortal } from "react-dom";
+
+import { Portal } from './components/atoms/Portal'
+import Loading from './components/modals/Loading';
 
 const CreateVideo = () => {
 
@@ -80,8 +84,11 @@ const CreateVideo = () => {
     setUrlInput("");
   };
 
+  
+
   return (
     <>
+    { isLoading ? <Portal selector="#message"><Loading /></Portal> : null}
       <form
         onSubmit={submitHandler}
         className="lg:w-2/3 w-full p-6 space-y-8 mx-auto"
@@ -96,7 +103,7 @@ const CreateVideo = () => {
             htmlFor="url_input"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            入力 
+            入力 {isLoading ? 'loading' : 'nope'}
           </label>
           <input
             type="text"
