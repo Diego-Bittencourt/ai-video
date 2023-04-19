@@ -2,6 +2,7 @@ import Button from '../../atoms/Button'
 import Image from 'next/image'
 import { FC } from 'react'
 
+
 interface VideoProps {
     isUrlVideoReady: boolean,
     videoTitle?: string,
@@ -10,7 +11,7 @@ interface VideoProps {
     videoId?: string,
 }
 
-const urlVideo: FC<VideoProps> = ({
+const UrlVideo: FC<VideoProps> = ({
     isUrlVideoReady,
     videoTitle,
     videoThumbnail,
@@ -18,6 +19,8 @@ const urlVideo: FC<VideoProps> = ({
     videoId,
 
 }) => {
+
+
 
     //code to show if the url video has been created and fetched
     const urlVideoReady = (
@@ -48,4 +51,4 @@ const urlVideo: FC<VideoProps> = ({
     )
 }
 
-export default urlVideo
+export default UrlVideo

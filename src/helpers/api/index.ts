@@ -1,3 +1,4 @@
+import { selectAccessToken } from '../../store/slices/authSlice';
  const api = {
   post: async (url: string, payload: Object) => {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -31,6 +32,22 @@
     }; //end of options object
 
     const data = await fetch(baseUrl + url);
+    const response = await data.json();
+    return response;
+  }, //end of get
+  login: async (url: string, payload: Object) => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_LOGIN_URL;
+    const options = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }; //end of options object
+
+    //fetching the data
+    const data = await fetch(baseUrl + url, options);
     const response = await data.json();
     return response;
   },
