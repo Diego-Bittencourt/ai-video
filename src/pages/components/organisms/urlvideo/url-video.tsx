@@ -29,8 +29,14 @@ const UrlVideo: FC<VideoProps> = ({
     }
 
 
-    const renderHandler = () => {
+    const renderHandler = async () => {
         //handler to send a request to render the video
+
+        const endpoint = `render/${videoId}`
+
+        const rendering = await api.post(endpoint, {})
+
+        checkHandler()
     }
 
     //reassign the video status to the latest
