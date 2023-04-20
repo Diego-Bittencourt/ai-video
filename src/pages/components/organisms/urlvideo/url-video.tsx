@@ -24,7 +24,8 @@ const UrlVideo: FC<VideoProps> = ({
     const [currentVideoStatus, setCurrentVideoStatus] = useState('Not ready')
 
     const checkHandler = async () => {
-        const status = await api.get(`${videoId}`)
+        const { status } = await api.get(`${videoId}`)
+        setCurrentVideoStatus(status)
     }
 
 
@@ -32,6 +33,7 @@ const UrlVideo: FC<VideoProps> = ({
         //handler to send a request to render the video
     }
 
+    //reassign the video status to the latest
     useEffect(() => {
         if (videoStatus) {
         setCurrentVideoStatus(videoStatus)

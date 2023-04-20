@@ -75,6 +75,10 @@ const CreateVideo = () => {
   const [isUrlVideoReady, setIsUrlVideoReady] = useState(false);
 
   const submitHandler = async (e: React.FormEvent) => {
+
+    //setting the loading modal
+    dispatch(setIsLoading(true))
+
     e.preventDefault();
     console.log("from code", process.env.NEXT_PUBLIC_BASE_URL);
     //prepare the payload to the fetch
@@ -95,6 +99,7 @@ const CreateVideo = () => {
 
     //reset the input
     setUrlInput("");
+    dispatch(setIsLoading(false))
   };
   
   const [isLoadingLocal, setIsLoadingLocal] = useState(false)
