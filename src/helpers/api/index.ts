@@ -23,7 +23,7 @@
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     const token = process.env.NEXT_PUBLIC_API_TOKEN;
     const options = {
-      method: "POST",
+      method: "GET",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
@@ -31,7 +31,7 @@
       },
     }; //end of options object
 
-    const data = await fetch(baseUrl + url);
+    const data = await fetch(baseUrl + url, options);
     const response = await data.json();
     return response;
   }, //end of get

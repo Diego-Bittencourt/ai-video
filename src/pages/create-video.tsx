@@ -137,7 +137,7 @@ const CreateVideo = () => {
         videoTitle={(urlVideo as any)?.name}
         videoThumbnail={(urlVideo as any)?.thumbnail}
         videoStatus={(urlVideo as any)?.status}
-        videoId={(urlVideo as any)?.id}
+        videoId={(urlVideo as any)?._id}
       />
     </>
   );
