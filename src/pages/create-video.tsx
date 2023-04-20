@@ -12,11 +12,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import Loading from './components/modals/Loading';
+import { setVideosList } from "@/store/slices/videosListSlice";
 
 const CreateVideo = () => {
 
   //setting the actions and selectors
   const isLoading = useSelector((state: RootState) => state.auth.isLoading)
+
+  //token
+  //const accessToken = useSelector((state: RootState) => state.auth.accessToken)
   
   const dispatch = useDispatch()
 
@@ -34,9 +38,20 @@ const CreateVideo = () => {
 
     //fetching the data from the server
     const response = await api.login('auth/login', credentials)
+    const { accessToken } = response
 
     //sending the tokens to the store
     dispatch(setTokens(response))
+
+    //grabbing the access token
+    const token = `Bearer ${accessToken}`
+
+    
+
+    const videosList = await api.lookup('videos/lookup', token)
+
+    //sending the videos to the store
+    dispatch(setVideosList(videosList.videos))
 
     //set no loading
     dispatch(setIsLoading(false))

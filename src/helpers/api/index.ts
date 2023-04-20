@@ -1,4 +1,4 @@
-import { selectAccessToken } from '../../store/slices/authSlice';
+
  const api = {
   post: async (url: string, payload: Object) => {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -36,6 +36,7 @@ import { selectAccessToken } from '../../store/slices/authSlice';
     return response;
   }, //end of get
   login: async (url: string, payload: Object) => {
+    //fetch to log in into the elai.io
     const baseUrl = process.env.NEXT_PUBLIC_BASE_LOGIN_URL;
     const options = {
       method: "POST",
@@ -51,6 +52,23 @@ import { selectAccessToken } from '../../store/slices/authSlice';
     const response = await data.json();
     return response;
   },
+  lookup: async (url: string, payload: string) => {
+    //fetch to get videos in the account after logging in elai.io
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_LOGIN_URL;
+    const options = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        Authorization: payload
+      },
+      //body: JSON.stringify(payload),
+    }; //end of options object
+
+    //fetching the data
+    const data = await fetch(baseUrl + url, options);
+    const response = await data.json();
+    return response;
+  }, //end of lookup
 };
 
 export default api

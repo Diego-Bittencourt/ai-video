@@ -8,21 +8,13 @@ export interface AuthState {
   isLoading: boolean;
 }
 
-/**
- * Default state object with initial values.
- */
 const initialState: AuthState = {
   accessToken: "",
   refreshToken: "",
   isLoading: true,
 };
 
-/**
- * Create a slice as a reducer containing actions.
- *
- * In this example actions are included in the slice. It is fine and can be
- * changed based on your needs.
- */
+//slice to hold login info and loading status
 export const authSlice = createSlice({
   name: 'auth',
   initialState,

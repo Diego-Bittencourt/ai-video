@@ -1,6 +1,7 @@
 import Button from "./components/atoms/Button";
 import Image from "next/image";
 import { useState } from "react";
+import VideosList from "./components/organisms/videolist/videos-list";
 
 const EditVideo = () => {
   const [dummyData, setDummyData] = useState([
@@ -30,6 +31,7 @@ const EditVideo = () => {
 
   return (
     <>
+    <VideosList />
     <div className="p-4 flex flex-wrap justify-center w-full mb-40">
       {dummyData.map((slide) => {
         return (
