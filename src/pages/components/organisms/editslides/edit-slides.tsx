@@ -18,12 +18,22 @@ const EditSlides = () => {
     const video = useSelector((state: RootState) => state.editVideo.video)
 
     const updateVideo = async (videoData) => {
+        let newVideo = JSON.parse(JSON.stringify(video))
+        newVideo.slides = videoData
         dispatch(setIsLoading(true))
         const videoId = `${video._id}`
-        const updatedVideo = await api.patch(videoId, videoData)
+        const updatedVideo = await api.patch(videoId, newVideo)
         dispatch(setIsLoading(false))
         console.log(updatedVideo)
         console.log("video na store", video)
+        
+        // fetch(updatedVideo.url)
+        // .then((res) => res.blob())
+        // .then((blob) => {
+        //   var file = window.URL.createObjectURL(blob)
+        //   window.location.assign(file)
+        // })
+        // .catch(err => console.error(err))
     }
 
 
@@ -34,9 +44,10 @@ const EditSlides = () => {
         //console.log(video.slides[index].speech)
         let slides = JSON.parse(JSON.stringify(video.slides))
         slides[index].speech = speech
+        console.log("arhhhh", slides)
         dispatch(setEditSlides(slides))
         //console.log(video.slides[index].speech)
-        updateVideo(video)
+        updateVideo(slides)
 
 
     }

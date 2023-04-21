@@ -46,7 +46,7 @@
       },
       body: JSON.stringify({
         public: false,
-        data: payload
+        slides: payload
       })
     };
 
