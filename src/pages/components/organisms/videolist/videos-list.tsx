@@ -8,7 +8,7 @@ import Badge from '../../atoms/Badge'
 import {
     setIsLoading
 } from '@/store/slices/authSlice'
-import { setEditVideo } from '@/store/slices/editVideo';
+import { setEditVideo } from '@/store/slices/editVideoSlice';
 
 const VideosList = () => {
   //comp to render a list of videos from the account

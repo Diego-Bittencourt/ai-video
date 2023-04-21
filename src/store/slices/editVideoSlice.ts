@@ -18,6 +18,10 @@ export const editVideoSlice = createSlice({
     setEditVideo: (state, action) => {
       state.video = action.payload;
     },
+    setEditSlides: (state, action) => {
+      //console.log(action)
+      state.video.slides = action.payload
+    }
   },
 });
 
@@ -25,6 +29,6 @@ export const editVideoSlice = createSlice({
 export const getUserState = (state: { user: editVideoState }) => state.user;
 
 // Exports all actions
-export const { setEditVideo } = editVideoSlice.actions;
+export const { setEditVideo, setEditSlides } = editVideoSlice.actions;
 
 export default editVideoSlice.reducer;

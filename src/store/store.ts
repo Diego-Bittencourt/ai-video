@@ -3,7 +3,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from './slices/authSlice';
 import videosListSlice from './slices/videosListSlice';
-import editVideoSlice from './slices/editVideo';
+import editVideoSlice from './slices/editVideoSlice';
 import {
   useDispatch as useDispatchBase,
   useSelector as useSelectorBase,
