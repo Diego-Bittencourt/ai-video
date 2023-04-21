@@ -44,10 +44,7 @@
         'content-type': 'application/json',
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
       },
-      body: JSON.stringify({
-        public: false,
-        slides: payload
-      })
+      body: JSON.stringify(payload)
     };
 
     const data = await fetch(baseUrl + url, options);
