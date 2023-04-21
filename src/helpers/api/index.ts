@@ -69,6 +69,23 @@
     const response = await data.json();
     return response;
   }, //end of lookup
+  fetchVideo: async (url: string, payload: string) => {
+    //fetch to get info about one video in the account after logging in elai.io
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_LOGIN_URL;
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: payload
+      },
+      //body: JSON.stringify(payload),
+    }; //end of options object
+
+    //fetching the data
+    const data = await fetch(baseUrl + url, options);
+    const response = await data.json();
+    return response;
+  }
 };
 
 export default api

@@ -118,15 +118,14 @@ const CreateVideo = () => {
         <h2 className="text-4xl text-center">動画作成</h2>
         <div className="flex justify-around">
           <Button>URL</Button>
-          <Button>PDF</Button>
+          {/* <Button>PDF</Button> */}
         </div>
         <div className="space-y-6">
           <label
             htmlFor="url_input"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            onClick={() => dispatch(setIsLoading(true))}
           >
-            入力 {isLoading ? 'loading' : 'nope'}{isLoadingLocal ? 'true' : 'false'}
+            入力
           </label>
           <input
             type="text"

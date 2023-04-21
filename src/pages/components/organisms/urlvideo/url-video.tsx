@@ -2,6 +2,8 @@ import api from '@/helpers/api'
 import Button from '../../atoms/Button'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
+import { setIsLoading } from '@/store/slices/authSlice'
+import { useDispatch } from 'react-redux'
 
 
 interface VideoProps {
@@ -21,11 +23,17 @@ const UrlVideo: FC<VideoProps> = ({
 
 }) => {
 
+    const dispatch = useDispatch()
+
     const [currentVideoStatus, setCurrentVideoStatus] = useState('Not ready')
+    const [videoDownloadUrl, setVideoDownloadUrl] = useState('')
 
     const checkHandler = async () => {
-        const { status } = await api.get(`${videoId}`)
+        dispatch(setIsLoading(true))
+        const { status, url } = await api.get(`${videoId}`)
         setCurrentVideoStatus(status)
+        setVideoDownloadUrl(url)
+        dispatch(setIsLoading(false))
     }
 
 
@@ -37,6 +45,16 @@ const UrlVideo: FC<VideoProps> = ({
         const rendering = await api.post(endpoint, {})
 
         checkHandler()
+    }
+
+    const downloadHandler = () => {
+        fetch(videoDownloadUrl)
+        .then((res) => res.blob())
+        .then((blob) => {
+          var file = window.URL.createObjectURL(blob)
+          window.location.assign(file)
+        })
+        .catch(err => console.error(err))
     }
 
     //reassign the video status to the latest
@@ -59,9 +77,9 @@ const UrlVideo: FC<VideoProps> = ({
                 />
             <p className='text-center text-2xl'>{currentVideoStatus}</p>
             <div className="flex justify-around w-2/3 mx-auto">
-                {videoStatus === 'draft' && <Button onClick={renderHandler}>Render</Button>} 
+                {currentVideoStatus === 'draft' && <Button onClick={renderHandler}>Render</Button>} 
                 <Button onClick={checkHandler}>Check Video</Button>
-                {videoStatus === 'ready' && <Button onClick={downloadHandler}>Download</Button>}
+                {currentVideoStatus === 'ready' && <Button onClick={downloadHandler}>Download</Button>}
             </div>
             </div>)
     )

@@ -3,6 +3,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSlice from './slices/authSlice';
 import videosListSlice from './slices/videosListSlice';
+import editVideoSlice from './slices/editVideo';
 import {
   useDispatch as useDispatchBase,
   useSelector as useSelectorBase,
@@ -14,7 +15,8 @@ import {
 export const store = configureStore({
   reducer: {
     auth: authSlice,
-    videosList: videosListSlice
+    videosList: videosListSlice,
+    editVideo: editVideoSlice,
   },
 });
 
